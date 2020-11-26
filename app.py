@@ -1,12 +1,12 @@
-from flask import Flask
+from flask import Flask,render_template
 
 app = Flask(__name__)
 
 
 # 路由解析，通过用户访问的路径，匹配相应的函数
-@app.route('/')
-def hello_world():
-    return '你好！'
+# @app.route('/')
+# def hello_world():
+#     return '你好！'
 
 
 @app.route("/index")
@@ -28,8 +28,12 @@ def welcome2(id):
 @app.route("/user/<float:id>")
 def welcome3(id):
     return '您好，您的金额为：%f' % id
-
 # 注意，路由路径不能重复，用户通过唯一路径访问特定的函数
+
+# 返回给用户渲染后的网页文件
+@app.route("/")
+def index2():
+    return render_template("index.html")
 
 
 
